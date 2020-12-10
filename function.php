@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 //Инициализация некоторых переменных
 $date = '';
 $name = '';
@@ -40,6 +41,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         $post_f = '';
         //Делаю запись в ДБ сообщения
         // id data name post
+        recordPost($name, $post);
         // Получаю массив из ДБ???
         
     }
