@@ -5,6 +5,9 @@ $date = '';
 $name = '';
 $post = '';
 
+//$s = getPosts();
+
+
 if($_SERVER['REQUEST_METHOD'] ==='POST'){
     //Форма отправлена
     $date = date("H:i:s d.M.Y"); //переделать на таймстамп
@@ -44,6 +47,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
         recordPost($name, $post);
         // Получаю массив из ДБ???
         
+        
     }
 } else { //Только что зашел..
     $msg = 'Оставь печать своей мудрости, свое имя и слово для потомков.';
@@ -51,7 +55,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
     $post_f = '';
     // Получаю предидущие записи из ДБ
 }
-
+$s = getPosts();
 
 
 ?>

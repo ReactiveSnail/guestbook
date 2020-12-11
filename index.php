@@ -12,70 +12,59 @@ include 'function.php';
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Guest Book</title>
 </head>
 
 <body>
-    <div>
-        <?php
-        echo '<br>';
-        echo $_SERVER['REQUEST_METHOD'];
-        echo '<br>';
-        echo '<pre>';
-        print_r($_POST);
-        echo '<pre>';
-        ?>
-    </div>
+    <div class="container">
 
-    <div id="posts">
-        <div class="post">
-            <p class="name">
-                Имя
-            </p>
-            <p class="data">
-                09:35 10.10.2020
-            </p>
-            <div class="message">
+        <div id="posts">
+            <?php foreach ($s as $value): ?>
+            <div class="post">
+                <div class="flexrow">
+                    <p class="name">
+                        <?php echo $value['name']; ?>
+                    </p>
+                    <p class="data">
+                        <?php echo date('H:i:s m.d.Y', $value['date']); ?>
+                    </p>
+                </div>
+                <div class="message">
+                    <p>
+                        <?php echo $value['post']; ?>
+                    </p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="messagetouser">
+            <div class="msgtu">
                 <p>
-                    Сообщение, длинной десять, двадцать, тридцать слов, то есть, приблизительно триста, да пусть хоть тысяча символов. (1000 символов).
+                    <?php echo $msg; ?>
+
                 </p>
             </div>
         </div>
-    </div>
-    <div id="posts">
-        <div class="post">
-            <p class="name">
-                <?php echo $name; ?>
-            </p>
-            <p class="data">
-                <?php echo $date; ?>
-            </p>
-            <div class="message">
-                <p>
-                    <?php echo $post; ?>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="message_fo_user">
-        <p>
-            <?php echo $msg; ?>
-        </p>
-    </div>
-    <div id="form">
-        <form method="post">
-            <p>
+        <div id="form">
+            <form method="post">
+
                 <label for="name">Имя<em>*</em></label>
-                <br>
-                <input type="text" name="name" value="<?php echo $name_f; ?>" id="name" placeholder="Напиши Имя">
-            </p>
-            <label for="post">Cообщение<em>*</em></label>
-            <br>
-            <textarea name="post" id="post" tabindex="4" placeholder="Напиши сообщение"></textarea>
-            <p>
-                <input type="submit" value="Отправить">
-            </p>
-        </form>
-    </div>
 
+                <input type="text" name="name" value="<?php echo $name_f; ?>" id="name" placeholder="Напиши Имя">
+
+                <div class="between"></div>
+
+                <label for="post">Cообщение<em>*</em></label>
+
+                <textarea name="post" id="post" tabindex="4" placeholder="Напиши сообщение"></textarea>
+                <p>
+                    <input type="submit" value="Отправить">
+                </p>
+            </form>
+        </div>
+    </div>
 </body>

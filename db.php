@@ -27,13 +27,20 @@ function recordPost($name, $post){
     $query->bindParam(':name', $name);
     $query->bindParam(':post', $post);
     $query->execute();
-    
-    echo '<br>';
     } catch (PDOException $e) {
     echo 'Ошибка в запросе: '.$e->getMessage();
     }
 }
 
+function getPosts(){
+    $pdo = dbConect();
+    
+    $query = 'SELECT id, date, name, post FROM message';
+    $result = $pdo->query($query);
+    $table = $result->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $table;
+}
 
 
 
