@@ -23,7 +23,7 @@ include 'function.php';
     <div class="container">
 
         <div id="posts">
-            <?php foreach ($s as $value): ?>
+            <?php foreach ($result as $value): ?>
             <div class="post">
                 <div class="flexrow">
                     <p class="name">
@@ -40,6 +40,30 @@ include 'function.php';
                 </div>
             </div>
             <?php endforeach; ?>
+
+            <div class="paginations">
+
+                <div class="pagination">
+                    <?php
+                if($page_counter == 0){
+                    echo "<p><a href=?start=0 class='active'>0</a></p>";
+                    for($j=1; $j < $paginations; $j++) { 
+                      echo "<p><a href=?start=$j>".$j."</a></p>";
+                   }
+                }else{
+                    echo "<p><a href=?start=$previous>Сюда</a></p>"; 
+                    for($j=0; $j < $paginations; $j++) {
+                     if($j == $page_counter) {
+                        echo "<p><a href=?start=$j class='active'>".$j."</a></p>";
+                     }else{
+                        echo "<p><a href=?start=$j>".$j."</a></p>";
+                     } 
+                  }if($j != $page_counter+1)
+                    echo "<p><a href=?start=$next>Туда</a></p>"; 
+                } 
+            ?>
+                </div>
+            </div>
         </div>
         <div class="messagetouser">
             <div class="msgtu">
@@ -48,6 +72,7 @@ include 'function.php';
 
                 </p>
             </div>
+
         </div>
         <div id="form">
             <form method="post">

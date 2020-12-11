@@ -42,6 +42,52 @@ function getPosts(){
     return $table;
 }
 
+//Вывод страниц с пагинацией
+//почти все подглядел тут:
+//https://www.etutorialspoint.com/index.php/50-simple-pagination-in-php
+
+$start = 0;        //Начальное значение счетчика
+$per_page = 5;     //Количество записей на странице
+$page_counter = 0; //Счетчик страниц
+$next = $page_counter + 1;
+$previous = $page_counter - 1;
+
+$pdo = dbConect();
+
+if(isset($_GET['start'])){
+    $start = $_GET['start'];
+    $page_counter = $_GET['start'];
+    $start = $start * $per_page;
+    $next = $page_counter + 1;
+    $previous = $page_counter - 1;
+}
+
+//Получаем записи из ДБ
+
+$query = "SELECT*FROM message LIMIT $start, $per_page";
+$query = $pdo->prepare($query);
+$query->execute();
+
+if($query->rowCount() > 0){
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//Считем общее количество строк в таблице
+$count_query = "SELECT*FROM message";
+$count_query = $pdo->prepare($count_query);
+$count_query->execute();
+$count = $count_query->rowCount();
+
+//Рассчитываем номера страниц пагинации,
+//разделив общее количество строк на страницу.
+$paginations = ceil($count / $per_page);
+
+
+
+
+
+
+
 
 
 ?>

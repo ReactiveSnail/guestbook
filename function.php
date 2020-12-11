@@ -55,7 +55,7 @@ if($_SERVER['REQUEST_METHOD'] ==='POST'){
     $post_f = '';
     // Получаю предидущие записи из ДБ
 }
-$s = getPosts();
+//$s = getPosts();
 
 
 ?>
